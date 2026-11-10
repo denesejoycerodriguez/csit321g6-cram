@@ -26,10 +26,9 @@ public class SessionTopicService {
         SessionTopicEntity topic = new SessionTopicEntity();
         try {
             topic = topicRepo.findById(id).get();
-            topic.setSessionId(details.getSessionId());
-            topic.setTopicName(details.getTopicName());
-            topic.setNotes(details.getNotes());
-            topic.setCompleted(details.isCompleted());
+            topic.setStudySession(details.getStudySession());
+            topic.setTopic(details.getTopic());
+            topic.setAllottedMinutes(details.getAllottedMinutes());
         } catch (NoSuchElementException e) {
             throw new RuntimeException("Session Topic " + id + " does not exist!");
         }

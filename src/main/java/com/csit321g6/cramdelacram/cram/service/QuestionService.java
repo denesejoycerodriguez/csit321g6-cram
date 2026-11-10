@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.csit321g6.cramdelacram.cram.entity.Question;
+import com.csit321g6.cramdelacram.cram.entity.QuestionEntity;
 import com.csit321g6.cramdelacram.cram.repository.QuestionRepository;
 
 @Service
@@ -16,20 +16,20 @@ public class QuestionService {
         this.questionRepository = questionRepository;
     }
 
-    public Question createQuestion(Question question) {
+    public QuestionEntity createQuestion(QuestionEntity question) {
         return questionRepository.save(question);
     }
 
-    public List<Question> getAllQuestions() {
+    public List<QuestionEntity> getAllQuestions() {
         return questionRepository.findAll();
     }
 
-    public Question getQuestionById(Long id) {
+    public QuestionEntity getQuestionById(Long id) {
         return questionRepository.findById(id).orElse(null);
     }
 
-    public Question updateQuestion(Long id, Question questionDetails) {
-        Question question = getQuestionById(id);
+    public QuestionEntity updateQuestion(Long id, QuestionEntity questionDetails) {
+        QuestionEntity question = getQuestionById(id);
 
         if (question == null) {
             return null;

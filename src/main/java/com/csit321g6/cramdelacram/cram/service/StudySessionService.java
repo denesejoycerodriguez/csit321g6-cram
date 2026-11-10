@@ -26,12 +26,10 @@ public class StudySessionService {
         StudySessionEntity session = new StudySessionEntity();
         try {
             session = sessionRepo.findById(id).get();
-            session.setUserId(details.getUserId());
-            session.setCourseId(details.getCourseId());
-            session.setSessionTitle(details.getSessionTitle());
-            session.setStartTime(details.getStartTime());
-            session.setEndTime(details.getEndTime());
-            session.setStatus(details.getStatus());
+            session.setUser(details.getUser());
+            session.setExam(details.getExam());
+            session.setSessionDate(details.getSessionDate());
+            session.setDurationMinutes(details.getDurationMinutes());
         } catch (NoSuchElementException e) {
             throw new RuntimeException("Study Session " + id + " does not exist!");
         }

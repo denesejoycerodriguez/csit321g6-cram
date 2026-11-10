@@ -9,38 +9,40 @@ public class StudyReminderEntity {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reminderId;
-    private Long userId;
-    private Long courseId;
-    private String reminderMessage;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name = "exam_id")
+    private ExamEntity exam; 
+
     private LocalDateTime reminderTime;
-    private boolean sent;
+    private String message; 
 
     public StudyReminderEntity() {}
 
-    public StudyReminderEntity(Long reminderId, Long userId, Long courseId, String reminderMessage, LocalDateTime reminderTime, boolean sent) {
+    public StudyReminderEntity(Long reminderId, UserEntity user, ExamEntity exam, LocalDateTime reminderTime, String message) {
         this.reminderId = reminderId;
-        this.userId = userId;
-        this.courseId = courseId;
-        this.reminderMessage = reminderMessage;
+        this.user = user;
+        this.exam = exam;
         this.reminderTime = reminderTime;
-        this.sent = sent;
+        this.message = message;
     }
 
     public Long getReminderId() { return reminderId; }
     public void setReminderId(Long reminderId) { this.reminderId = reminderId; }
 
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public UserEntity getUser() { return user; }
+    public void setUser(UserEntity user) { this.user = user; }
 
-    public Long getCourseId() { return courseId; }
-    public void setCourseId(Long courseId) { this.courseId = courseId; }
-
-    public String getReminderMessage() { return reminderMessage; }
-    public void setReminderMessage(String reminderMessage) { this.reminderMessage = reminderMessage; }
+    public ExamEntity getExam() { return exam; }
+    public void setExam(ExamEntity exam) { this.exam = exam; }
 
     public LocalDateTime getReminderTime() { return reminderTime; }
     public void setReminderTime(LocalDateTime reminderTime) { this.reminderTime = reminderTime; }
 
-    public boolean isSent() { return sent; }
-    public void setSent(boolean sent) { this.sent = sent; }
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
 }

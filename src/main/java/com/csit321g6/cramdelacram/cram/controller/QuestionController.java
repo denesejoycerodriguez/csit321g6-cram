@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.csit321g6.cramdelacram.cram.entity.Question;
+import com.csit321g6.cramdelacram.cram.entity.QuestionEntity;
 import com.csit321g6.cramdelacram.cram.service.QuestionService;
 
 @RestController
@@ -27,24 +27,24 @@ public class QuestionController {
     }
 
     @PostMapping
-    public Question createQuestion(@RequestBody Question question) {
+    public QuestionEntity createQuestion(@RequestBody QuestionEntity question) {
         return questionService.createQuestion(question);
     }
 
     @GetMapping
-    public List<Question> getAllQuestions() {
+    public List<QuestionEntity> getAllQuestions() {
         return questionService.getAllQuestions();
     }
 
     @GetMapping("/{id}")
-    public Question getQuestionById(@PathVariable Long id) {
+    public QuestionEntity getQuestionById(@PathVariable Long id) {
         return questionService.getQuestionById(id);
     }
 
     @PutMapping("/{id}")
-    public Question updateQuestion(
+    public QuestionEntity updateQuestion(
             @PathVariable Long id,
-            @RequestBody Question question) {
+            @RequestBody QuestionEntity question) {
         return questionService.updateQuestion(id, question);
     }
 

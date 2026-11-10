@@ -6,9 +6,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class Quiz {
+@Table(name = "quiz")
+public class QuizEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +22,9 @@ public class Quiz {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "topic_id", nullable = false)
-    private Topic topic;
+    private TopicEntity topic;
 
-    public Quiz() {
+    public QuizEntity() {
     }
 
     // Getters and Setters
@@ -51,11 +53,11 @@ public class Quiz {
         this.timeLimit = timeLimit;
     }
 
-    public Topic getTopic() {
+    public TopicEntity getTopic() {
         return topic;
     }
 
-    public void setTopic(Topic topic) {
+    public void setTopic(TopicEntity topic) {
         this.topic = topic;
     }
 }

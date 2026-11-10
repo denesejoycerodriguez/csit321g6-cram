@@ -14,11 +14,11 @@ public class QuizAttempt {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserEntity user;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_id", nullable = false)
-    private Quiz quiz;
+    private QuizEntity quiz;
 
     private Integer score;
 
@@ -36,19 +36,19 @@ public class QuizAttempt {
         this.attemptId = attemptId;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 
-    public Quiz getQuiz() {
+    public QuizEntity getQuiz() {
         return quiz;
     }
 
-    public void setQuiz(Quiz quiz) {
+    public void setQuiz(QuizEntity quiz) {
         this.quiz = quiz;
     }
 

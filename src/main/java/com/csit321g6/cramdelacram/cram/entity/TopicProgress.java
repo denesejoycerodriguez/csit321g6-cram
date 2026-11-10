@@ -14,11 +14,11 @@ public class TopicProgress {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserEntity user;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "topic_id", nullable = false)
-    private Topic topic;
+    private TopicEntity topic;
 
     @Column(name = "mastery_level")
     private String masteryLevel;
@@ -37,19 +37,19 @@ public class TopicProgress {
         this.progressId = progressId;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 
-    public Topic getTopic() {
+    public TopicEntity getTopic() {
         return topic;
     }
 
-    public void setTopic(Topic topic) {
+    public void setTopic(TopicEntity topic) {
         this.topic = topic;
     }
 

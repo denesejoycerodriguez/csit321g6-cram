@@ -1,7 +1,7 @@
 package com.csit321g6.cramdelacram.cram.service;
 
-import com.csit321g6.cramdelacram.cram.entity.Flashcard;
-import com.csit321g6.cramdelacram.cram.entity.Topic;
+import com.csit321g6.cramdelacram.cram.entity.FlashcardEntity;
+import com.csit321g6.cramdelacram.cram.entity.TopicEntity;
 import com.csit321g6.cramdelacram.cram.repository.FlashcardRepository;
 import com.csit321g6.cramdelacram.cram.repository.TopicRepository;
 import java.util.List;
@@ -22,25 +22,25 @@ public class FlashcardService {
         this.topics = topics;
     }
 
-    public Flashcard create(Flashcard f) {
+    public FlashcardEntity create(FlashcardEntity f) {
         f.setId(null);
         f.setTopic(findTopic(f.getTopic()));
         return flashcards.save(f);
     }
 
     @Transactional(readOnly = true)
-    public List<Flashcard> getAll(Long topicId) {
+    public List<FlashcardEntity> getAll(Long topicId) {
         return topicId == null ? flashcards.findAll() : flashcards.findByTopicId(topicId);
     }
 
     @Transactional(readOnly = true)
-    public Flashcard getById(Long id) {
+    public FlashcardEntity getById(Long id) {
         return flashcards.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Flashcard " + id + " not found"));
     }
 
-    public Flashcard update(Long id, Flashcard in) {
-        Flashcard f = getById(id);
+    public FlashcardEntity update(Long id, FlashcardEntity in) {
+        FlashcardEntity f = getById(id);
         f.setQuestion(in.getQuestion());
         f.setAnswer(in.getAnswer());
         if (in.getTopic() != null && in.getTopic().getId() != null)
@@ -52,7 +52,7 @@ public class FlashcardService {
         flashcards.delete(getById(id));
     }
 
-    private Topic findTopic(Topic ref) {
+    private TopicEntity findTopic(TopicEntity ref) {
         if (ref == null || ref.getId() == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "topic.id is required");
         return topics.findById(ref.getId()).orElseThrow(() ->

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.csit321g6.cramdelacram.cram.entity.Quiz;
+import com.csit321g6.cramdelacram.cram.entity.QuizEntity;
 import com.csit321g6.cramdelacram.cram.service.QuizService;
 
 @RestController
@@ -19,22 +19,22 @@ public class QuizController {
     }
 
     @PostMapping
-    public Quiz createQuiz(@RequestBody Quiz quiz) {
+    public QuizEntity createQuiz(@RequestBody QuizEntity quiz) {
         return quizService.createQuiz(quiz);
     }
 
     @GetMapping
-    public List<Quiz> getAllQuizzes() {
+    public List<QuizEntity> getAllQuizzes() {
         return quizService.getAllQuizzes();
     }
 
     @GetMapping("/{id}")
-    public Quiz getQuizById(@PathVariable Long id) {
+    public QuizEntity getQuizById(@PathVariable Long id) {
         return quizService.getQuizById(id);
     }
 
     @PutMapping("/{id}")
-    public Quiz updateQuiz(@PathVariable Long id, @RequestBody Quiz quiz) {
+    public QuizEntity updateQuiz(@PathVariable Long id, @RequestBody QuizEntity quiz) {
         return quizService.updateQuiz(id, quiz);
     }
 

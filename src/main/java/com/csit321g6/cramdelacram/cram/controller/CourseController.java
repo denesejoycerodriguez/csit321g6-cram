@@ -1,6 +1,6 @@
 package com.csit321g6.cramdelacram.cram.controller;
 
-import com.csit321g6.cramdelacram.cram.entity.Course;
+import com.csit321g6.cramdelacram.cram.entity.CourseEntity;
 import com.csit321g6.cramdelacram.cram.service.CourseService;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -15,16 +15,16 @@ public class CourseController {
     public CourseController(CourseService service) { this.service = service; }
 
     @PostMapping @ResponseStatus(HttpStatus.CREATED)
-    public Course create(@Valid @RequestBody Course c) { return service.create(c); }
+    public CourseEntity create(@Valid @RequestBody CourseEntity c) { return service.create(c); }
 
     @GetMapping
-    public List<Course> list(@RequestParam(required = false) Long userId) { return service.getAll(userId); }
+    public List<CourseEntity> list(@RequestParam(required = false) Long userId) { return service.getAll(userId); }
 
     @GetMapping("/{id}")
-    public Course get(@PathVariable Long id) { return service.getById(id); }
+    public CourseEntity get(@PathVariable Long id) { return service.getById(id); }
 
     @PutMapping("/{id}")
-    public Course update(@PathVariable Long id, @Valid @RequestBody Course c) { return service.update(id, c); }
+    public CourseEntity update(@PathVariable Long id, @Valid @RequestBody CourseEntity c) { return service.update(id, c); }
 
     @DeleteMapping("/{id}") @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) { service.delete(id); }

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
     public enum Role { ADMIN, TEACHER, STUDENT }
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.csit321g6.cramdelacram.cram.entity.Quiz;
+import com.csit321g6.cramdelacram.cram.entity.QuizEntity;
 import com.csit321g6.cramdelacram.cram.repository.QuizRepository;
 
 @Service
@@ -16,20 +16,20 @@ public class QuizService {
         this.quizRepository = quizRepository;
     }
 
-    public Quiz createQuiz(Quiz quiz) {
+    public QuizEntity createQuiz(QuizEntity quiz) {
         return quizRepository.save(quiz);
     }
 
-    public List<Quiz> getAllQuizzes() {
+    public List<QuizEntity> getAllQuizzes() {
         return quizRepository.findAll();
     }
 
-    public Quiz getQuizById(Long id) {
+    public QuizEntity getQuizById(Long id) {
         return quizRepository.findById(id).orElse(null);
     }
 
-    public Quiz updateQuiz(Long id, Quiz quizDetails) {
-        Quiz quiz = getQuizById(id);
+    public QuizEntity updateQuiz(Long id, QuizEntity quizDetails) {
+        QuizEntity quiz = getQuizById(id);
 
         if (quiz == null) {
             return null;

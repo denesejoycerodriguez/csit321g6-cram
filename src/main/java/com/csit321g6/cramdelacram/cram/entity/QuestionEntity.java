@@ -6,9 +6,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class Question {
+@Table(name = "question")
+public class QuestionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +22,9 @@ public class Question {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_id", nullable = false)
-    private Quiz quiz;
+    private QuizEntity quiz;
 
-    public Question() {
+    public QuestionEntity() {
     }
 
     public Long getQuestionId() {
@@ -49,11 +51,11 @@ public class Question {
         this.correctAnswer = correctAnswer;
     }
 
-    public Quiz getQuiz() {
+    public QuizEntity getQuiz() {
         return quiz;
     }
 
-    public void setQuiz(Quiz quiz) {
+    public void setQuiz(QuizEntity quiz) {
         this.quiz = quiz;
     }
 }

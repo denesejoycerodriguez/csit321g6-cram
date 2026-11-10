@@ -1,6 +1,6 @@
 package com.csit321g6.cramdelacram.cram.service;
 
-import com.csit321g6.cramdelacram.cram.entity.User;
+import com.csit321g6.cramdelacram.cram.entity.UserEntity;
 import com.csit321g6.cramdelacram.cram.repository.UserRepository;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class UserService {
         this.users = users;
     }
 
-    public User create(User u) {
+    public UserEntity create(UserEntity u) {
         if (u.getPassword() == null || u.getPassword().isBlank())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "password is required");
         if (users.existsByUsername(u.getUsername()))
@@ -30,23 +30,23 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Email already registered");
         u.setId(null);
         u.setPassword(encoder.encode(u.getPassword()));
-        if (u.getRole() == null) u.setRole(User.Role.STUDENT);
+        if (u.getRole() == null) u.setRole(UserEntity.Role.STUDENT);
         return users.save(u);
     }
 
     @Transactional(readOnly = true)
-    public List<User> getAll() {
+    public List<UserEntity> getAll() {
         return users.findAll();
     }
 
     @Transactional(readOnly = true)
-    public User getById(Long id) {
+    public UserEntity getById(Long id) {
         return users.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "User " + id + " not found"));
     }
 
-    public User update(Long id, User in) {
-        User u = getById(id);
+    public UserEntity update(Long id, UserEntity in) {
+        UserEntity u = getById(id);
         if (users.existsByUsernameAndIdNot(in.getUsername(), id))
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Username already taken");
         if (users.existsByEmailAndIdNot(in.getEmail(), id))

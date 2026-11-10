@@ -13,11 +13,11 @@ public class ReviewPriority {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private UserEntity user;
 
     @ManyToOne
     @JoinColumn(name = "topic_id")
-    private Topic topic;
+    private TopicEntity topic;
 
     @ManyToOne
     @JoinColumn(name = "exam_id")
@@ -37,19 +37,19 @@ public class ReviewPriority {
         this.priorityId = priorityId;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 
-    public Topic getTopic() {
+    public TopicEntity getTopic() {
         return topic;
     }
 
-    public void setTopic(Topic topic) {
+    public void setTopic(TopicEntity topic) {
         this.topic = topic;
     }
 

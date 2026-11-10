@@ -26,8 +26,8 @@ public class ExamService {
         ExamEntity existingExam = new ExamEntity();
         try{
             existingExam = examRepo.findById(id).get();
-            existingExam.setUserId(examDetails.getUserId());
-            existingExam.setCourseId(examDetails.getCourseId());
+            existingExam.setUser(examDetails.getUser());
+            existingExam.setCourse(examDetails.getCourse());
             existingExam.setExamTitle(examDetails.getExamTitle());
             existingExam.setExamDate(examDetails.getExamDate());
         } catch(NoSuchElementException e){

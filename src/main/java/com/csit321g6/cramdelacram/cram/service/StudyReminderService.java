@@ -26,11 +26,10 @@ public class StudyReminderService {
         StudyReminderEntity reminder = new StudyReminderEntity();
         try {
             reminder = reminderRepo.findById(id).get();
-            reminder.setUserId(details.getUserId());
-            reminder.setCourseId(details.getCourseId());
-            reminder.setReminderMessage(details.getReminderMessage());
+            reminder.setUser(details.getUser());
+            reminder.setExam(details.getExam());
             reminder.setReminderTime(details.getReminderTime());
-            reminder.setSent(details.isSent());
+            reminder.setMessage(details.getMessage());
         } catch (NoSuchElementException e) {
             throw new RuntimeException("Study Reminder " + id + " does not exist!");
         }

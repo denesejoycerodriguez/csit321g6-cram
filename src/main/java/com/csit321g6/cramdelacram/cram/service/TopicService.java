@@ -1,7 +1,7 @@
 package com.csit321g6.cramdelacram.cram.service;
 
-import com.csit321g6.cramdelacram.cram.entity.Course;
-import com.csit321g6.cramdelacram.cram.entity.Topic;
+import com.csit321g6.cramdelacram.cram.entity.CourseEntity;
+import com.csit321g6.cramdelacram.cram.entity.TopicEntity;
 import com.csit321g6.cramdelacram.cram.repository.CourseRepository;
 import com.csit321g6.cramdelacram.cram.repository.TopicRepository;
 import java.util.List;
@@ -22,25 +22,25 @@ public class TopicService {
         this.courses = courses;
     }
 
-    public Topic create(Topic t) {
+    public TopicEntity create(TopicEntity t) {
         t.setId(null);
         t.setCourse(findCourse(t.getCourse()));
         return topics.save(t);
     }
 
     @Transactional(readOnly = true)
-    public List<Topic> getAll(Long courseId) {
+    public List<TopicEntity> getAll(Long courseId) {
         return courseId == null ? topics.findAll() : topics.findByCourseId(courseId);
     }
 
     @Transactional(readOnly = true)
-    public Topic getById(Long id) {
+    public TopicEntity getById(Long id) {
         return topics.findById(id).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Topic " + id + " not found"));
     }
 
-    public Topic update(Long id, Topic in) {
-        Topic t = getById(id);
+    public TopicEntity update(Long id, TopicEntity in) {
+        TopicEntity t = getById(id);
         t.setTitle(in.getTitle());
         t.setDescription(in.getDescription());
         if (in.getCourse() != null && in.getCourse().getId() != null)
@@ -52,7 +52,7 @@ public class TopicService {
         topics.delete(getById(id));
     }
 
-    private Course findCourse(Course ref) {
+    private CourseEntity findCourse(CourseEntity ref) {
         if (ref == null || ref.getId() == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "course.id is required");
         return courses.findById(ref.getId()).orElseThrow(() ->

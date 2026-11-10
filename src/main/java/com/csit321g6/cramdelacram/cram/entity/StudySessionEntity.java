@@ -9,43 +9,40 @@ public class StudySessionEntity {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sessionId;
-    private Long userId;
-    private Long courseId;
-    private String sessionTitle;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
-    private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name = "exam_id")
+    private ExamEntity exam; 
+
+    private LocalDateTime sessionDate; 
+    private Integer durationMinutes;
 
     public StudySessionEntity() {}
 
-    public StudySessionEntity(Long sessionId, Long userId, Long courseId, String sessionTitle, LocalDateTime startTime, LocalDateTime endTime, String status) {
+    public StudySessionEntity(Long sessionId, UserEntity user, ExamEntity exam, LocalDateTime sessionDate, Integer durationMinutes) {
         this.sessionId = sessionId;
-        this.userId = userId;
-        this.courseId = courseId;
-        this.sessionTitle = sessionTitle;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.status = status;
+        this.user = user;
+        this.exam = exam;
+        this.sessionDate = sessionDate;
+        this.durationMinutes = durationMinutes;
     }
 
     public Long getSessionId() { return sessionId; }
     public void setSessionId(Long sessionId) { this.sessionId = sessionId; }
 
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public UserEntity getUser() { return user; }
+    public void setUser(UserEntity user) { this.user = user; }
 
-    public Long getCourseId() { return courseId; }
-    public void setCourseId(Long courseId) { this.courseId = courseId; }
+    public ExamEntity getExam() { return exam; }
+    public void setExam(ExamEntity exam) { this.exam = exam; }
 
-    public String getSessionTitle() { return sessionTitle; }
-    public void setSessionTitle(String sessionTitle) { this.sessionTitle = sessionTitle; }
+    public LocalDateTime getSessionDate() { return sessionDate; }
+    public void setSessionDate(LocalDateTime sessionDate) { this.sessionDate = sessionDate; }
 
-    public LocalDateTime getStartTime() { return startTime; }
-    public void setStartTime(LocalDateTime startTime) { this.startTime = startTime; }
-
-    public LocalDateTime getEndTime() { return endTime; }
-    public void setEndTime(LocalDateTime endTime) { this.endTime = endTime; }
-
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public Integer getDurationMinutes() { return durationMinutes; }
+    public void setDurationMinutes(Integer durationMinutes) { this.durationMinutes = durationMinutes; }
 }

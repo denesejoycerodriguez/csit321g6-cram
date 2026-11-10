@@ -9,17 +9,24 @@ public class ExamEntity {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long examId;
-    private Long userId;
-    private Long courseId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private CourseEntity course;
+
     private String examTitle;
     private LocalDateTime examDate;
 
     public ExamEntity(){}
 
-    public ExamEntity(Long examId, Long userId, Long courseId, String examTitle, LocalDateTime examDate){
+    public ExamEntity(Long examId, UserEntity user, CourseEntity course, String examTitle, LocalDateTime examDate){
         this.examId = examId;
-        this.userId = userId;
-        this.courseId = courseId;
+        this.user = user;
+        this.course = course;
         this.examTitle = examTitle;
         this.examDate = examDate;
     }
@@ -27,11 +34,11 @@ public class ExamEntity {
     public Long getExamId(){ return examId; }
     public void setExamId(Long examId){ this.examId = examId; }
 
-    public Long getUserId(){ return userId; }
-    public void setUserId(Long userId){ this.userId = userId; }
+    public UserEntity getUser(){ return user; }
+    public void setUser(UserEntity user){ this.user = user; }
 
-    public Long getCourseId(){ return courseId; }
-    public void setCourseId(Long courseId){ this.courseId = courseId; }
+    public CourseEntity getCourse(){ return course; }
+    public void setCourse(CourseEntity course){ this.course = course; }
 
     public String getExamTitle(){ return examTitle; }
     public void setExamTitle(String examTitle){ this.examTitle = examTitle; }

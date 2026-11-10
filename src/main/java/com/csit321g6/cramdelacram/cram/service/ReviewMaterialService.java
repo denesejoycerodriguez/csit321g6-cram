@@ -1,7 +1,7 @@
 package com.csit321g6.cramdelacram.cram.service;
 
 import com.csit321g6.cramdelacram.cram.entity.ReviewMaterial;
-import com.csit321g6.cramdelacram.cram.entity.Topic;
+import com.csit321g6.cramdelacram.cram.entity.TopicEntity;
 import com.csit321g6.cramdelacram.cram.repository.ReviewMaterialRepository;
 import com.csit321g6.cramdelacram.cram.repository.TopicRepository;
 import java.util.List;
@@ -54,7 +54,7 @@ public class ReviewMaterialService {
         materials.delete(getById(id));
     }
 
-    private Topic findTopic(Topic ref) {
+    private TopicEntity findTopic(TopicEntity ref) {
         if (ref == null || ref.getId() == null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "topic.id is required");
         return topics.findById(ref.getId()).orElseThrow(() ->

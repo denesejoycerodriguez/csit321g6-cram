@@ -13,7 +13,7 @@ public class ReviewMaterial {
     private Long id;
     @ManyToOne(optional = false) @JoinColumn(name = "topic_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Topic topic;
+    private TopicEntity topic;
     @NotBlank @Column(nullable = false)
     private String title;
     @NotNull @Enumerated(EnumType.STRING) @Column(nullable = false)
@@ -24,8 +24,8 @@ public class ReviewMaterial {
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-    public Topic getTopic() { return topic; }
-    public void setTopic(Topic topic) { this.topic = topic; }
+    public TopicEntity getTopic() { return topic; }
+    public void setTopic(TopicEntity topic) { this.topic = topic; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
     public Type getType() { return type; }
